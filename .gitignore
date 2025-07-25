@@ -144,3 +144,4 @@ vite.config.ts.timestamp-*
 *.sqlite-journal
 package-lock.json
 .DS_Store
+gen

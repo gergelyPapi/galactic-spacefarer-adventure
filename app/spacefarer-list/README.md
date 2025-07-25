@@ -9,7 +9,7 @@
 |**Service Type**<br>OData URL|
 |**Service URL**<br>http://localhost:4004/odata/v4/spacefarer|
 |**Module Name**<br>spacefarer-list|
-|**Application Title**<br>Spacefarer Listq|
+|**Application Title**<br>Spacefarer List|
 |**Namespace**<br>sap.sapcerafer|
 |**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.138.1|

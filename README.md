@@ -22,8 +22,8 @@ curl -X POST http://localhost:4004/odata/v4/spacefarer/Spacefarers \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Fenix Orion",
-    "stardustCollection": 40,
-    "wormholeNavigationSkill": 99,
+    "stardustCollection": 0,
+    "wormholeNavigationSkill": 5,
     "originPlanet": "Dagobah",
     "spacesuitColor": "green"
   }'
@@ -40,7 +40,7 @@ curl http://localhost:4004/odata/v4/spacefarer/Spacefarers(<ID>)
 
 curl -X PATCH http://localhost:4004/odata/v4/spacefarer/Spacefarers(<ID>) \
   -H "Content-Type: application/json" \
-  -d '{"rank": "Captain", "level": 6}'
+  -d '{"spacesuitColor": "gold"}'
 
 #### Delete a Spacefarer
 
