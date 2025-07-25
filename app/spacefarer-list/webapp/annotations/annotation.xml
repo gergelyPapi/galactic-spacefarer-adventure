@@ -17,7 +17,7 @@
                                     <PropertyValue Property="Value" Path="name"/>
                                 </Record>
                                 <Record Type="UI.DataField">
-                                    <PropertyValue Property="Label" String="star dust"/>
+                                    <PropertyValue Property="Label" String="Stardust Collection"/>
                                     <PropertyValue Property="Value" Path="stardustCollection"/>
                                 </Record>
                                 <Record Type="UI.DataField">
@@ -25,11 +25,11 @@
                                     <PropertyValue Property="Value" Path="wormholeNavigationSkill"/>
                                 </Record>
                                 <Record Type="UI.DataField">
-                                    <PropertyValue Property="Label" String="Planet of origin"/>
+                                    <PropertyValue Property="Label" String="Planet of Origin"/>
                                     <PropertyValue Property="Value" Path="originPlanet"/>
                                 </Record>
                                 <Record Type="UI.DataField">
-                                    <PropertyValue Property="Label" String="Suit Color"/>
+                                    <PropertyValue Property="Label" String="Spacesuit Color"/>
                                     <PropertyValue Property="Value" Path="spacesuitColor"/>
                                 </Record>
                             </Collection>
@@ -52,7 +52,7 @@
                             <PropertyValue Property="Value" Path="name"/>
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Label" String="Stardust"/>
+                            <PropertyValue Property="Label" String="Stardust Collection"/>
                             <PropertyValue Property="Value" Path="stardustCollection"/>
                         </Record>
                         <Record Type="UI.DataField">
@@ -60,11 +60,11 @@
                             <PropertyValue Property="Value" Path="wormholeNavigationSkill"/>
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Label" String="Planet of origin"/>
+                            <PropertyValue Property="Label" String="Planet of Origin"/>
                             <PropertyValue Property="Value" Path="originPlanet"/>
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Label" String="Suit Color"/>
+                            <PropertyValue Property="Label" String="Spacesuit Color"/>
                             <PropertyValue Property="Value" Path="spacesuitColor"/>
                         </Record>
                     </Collection>

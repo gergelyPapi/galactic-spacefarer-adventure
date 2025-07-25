@@ -1,24 +1,24 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Thu Jul 24 2025 19:27:58 GMT+0200 (Central European Summer Time)|
+|**Generation Date and Time**<br>Fri Jul 25 2025 12:06:47 GMT+0200 (Central European Summer Time)|
 |**App Generator**<br>SAP Fiori Application Generator|
 |**App Generator Version**<br>1.18.3|
 |**Generation Platform**<br>Visual Studio Code|
 |**Template Used**<br>List Report Page V4|
 |**Service Type**<br>OData URL|
-|**Service URL**<br>http://localhost:4004/odata/v4/spacefarer/|
-|**Module Name**<br>project1|
-|**Application Title**<br>App Title|
-|**Namespace**<br>|
+|**Service URL**<br>http://localhost:4004/odata/v4/spacefarer|
+|**Module Name**<br>spacefarer-list|
+|**Application Title**<br>Spacefarer Listq|
+|**Namespace**<br>sap.sapcerafer|
 |**UI5 Theme**<br>sap_horizon|
-|**UI5 Version**<br>1.138.0|
+|**UI5 Version**<br>1.138.1|
 |**Enable Code Assist Libraries**<br>False|
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
 |**Main Entity**<br>Spacefarers|
 
-## project1
+## spacefarer-list
 
 An SAP Fiori application.
 
