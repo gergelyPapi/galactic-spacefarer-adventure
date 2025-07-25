@@ -7,4 +7,7 @@ entity Spacefarer {
   wormholeNavigationSkill: Integer;
   originPlanet: String;
   spacesuitColor: String;
+
+  @Core.Computed
+  accessCode: String;
 }

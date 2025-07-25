@@ -9,6 +9,7 @@
     "@sap/cds": "^9",
     "dotenv": "^17.2.1",
     "express": "^4",
+    "lodash-es": "^4.17.21",
     "nodemailer": "^7.0.5"
   },
   "engines": {
@@ -19,6 +20,6 @@
     "@cap-js/sqlite": "^2"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds watch"
   }
 }

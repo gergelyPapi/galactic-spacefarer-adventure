@@ -1,9 +1,12 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import crypto from 'crypto';
+import { get as ldGet } from 'lodash-es';
+
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-  service: 'egalactic-hq',
+  service: process.env.MAIL_DOMAIN,
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS
@@ -13,11 +16,59 @@ const transporter = nodemailer.createTransport({
 const formatRecipient = (name) => {
   const safeName = name.replace(/\s+/g, '').replace(/[^a-zA-Z0-9]/g, '');
   return `HQ_${safeName}@${process.env.MAIL_DOMAIN}`;
-}
+};
+
+const generateAccessCode = (name, originPlanet) => {
+  const first = name?.[0]?.toUpperCase() || 'X';
+  const planet = originPlanet?.slice(0, 3)?.toUpperCase() || 'XXX';
+  const suffix = crypto.randomBytes(4).toString('hex');
+  return `${first}${planet}${suffix}`;
+};
+
+const validateAccess = async (req, srv) => {
+  const isFiori = req.headers['sap-contextid'] || req.headers['x-csrf-token'];
+  if (isFiori) return;
+
+  let accessCode;
+
+  if (req.event === 'CREATE') {
+    accessCode = req.data?.accessCode;
+  } else {
+    accessCode = ldGet(req, 'headers.x-access-code');
+  }
+
+  console.log('accessCode1');
+  console.log(accessCode);
+  console.log('accessCode2');
+
+  if (!accessCode) {
+    return req.reject(403, 'Missing accessCode.');
+  }
+
+  const found = await SELECT.one.from(srv.entities.Spacefarers).where({ accessCode });
+
+  if (!found || found.IsActiveEntity === false) {
+    return req.reject(403, 'Cosmic invader detected! Access denied');
+  }
+
+  if (req.event === 'READ') {
+    const originPlanet = ldGet(req, 'headers.x-origin-planet');
+
+    if (!originPlanet || found.originPlanet !== originPlanet) {
+      return req.reject(403, 'Access denied due to originPlanet mismatch.');
+    }
+  }
+};
+
 
 export default (srv) => {
-  srv.before('CREATE', 'SpacefarerService.Spacefarers.drafts', (req) => {
-    const { wormholeNavigationSkill, name, stardustCollection } = req.data;
+  srv.before(['READ', 'UPDATE', 'DELETE'], 'Spacefarers', (req) => validateAccess(req, srv));
+  srv.before('CREATE', 'Spacefarers.drafts', (req) => validateAccess(req, srv));
+
+  srv.before('CREATE', 'Spacefarers.drafts', (req) => {
+    const { wormholeNavigationSkill, name, stardustCollection, originPlanet } = req.data;
+
+    req.data.accessCode = generateAccessCode(name, originPlanet);
 
     if (wormholeNavigationSkill !== undefined && wormholeNavigationSkill < 5) {
       req.error({
@@ -36,8 +87,15 @@ export default (srv) => {
     }
   });
 
-  srv.after('CREATE', 'SpacefarerService.Spacefarers.drafts', async (created) => {
-    if(created?.name) {
+  srv.before('UPDATE', 'Spacefarers.drafts', (req) => {
+    if ('accessCode' in req.data) {
+      delete req.data.accessCode;
+      console.log('Prevented accessCode from being updated.');
+    }
+  });
+
+  srv.after('CREATE', 'Spacefarers.drafts', async (created) => {
+    if (created?.name) {
       const recipient = formatRecipient(created.name);
       const mailOptions = {
         from: process.env.MAIL_USER,
@@ -51,7 +109,7 @@ export default (srv) => {
         console.log(`Email sent to ${recipient}`);
       } catch (err) {
         console.error(`Email failed: ${err.message}`);
-        console.log(`Fallback log: Welcome aboard ${created.name}!`);
+        console.log(`Welcome aboard ${created.name}! Please save your access code for entry: ${created.accessCode}`);
       }
     }
   });
