@@ -10,9 +10,19 @@ in the Service API call when a new spacefaring candidate embarks on their advent
 ### Startup
 
 1. Open a new terminal & cd into project directory
-2. Run `npm i` to install dependancies
-3. Run `npm start` to run the CAP service in watch mode
-4. Use the enpoints to interact with data
+2. Create a `.env` file in root directory to include the following to enable email module
+
+```
+  MAIL_USER=your.email@egalactic-hq.org
+  MAIL_PASS=your_app_password_or_token
+  MAIL_DOMAIN=galactic-hq.org
+```
+
+3. Run `npm i` to install dependancies
+4. Run `npm start` to run the CAP service in watch mode
+5. `cd` into the fiori app folder `app/spacefarer-list` run `npm i`
+6. Run `npm start` in the firoi app folder
+7. Use the enpoints to interact with data & interact with data on the opened browser window
 
 ### Endpoints and examples
 

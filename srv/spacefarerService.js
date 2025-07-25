@@ -37,10 +37,6 @@ const validateAccess = async (req, srv) => {
     accessCode = ldGet(req, 'headers.x-access-code');
   }
 
-  console.log('accessCode1');
-  console.log(accessCode);
-  console.log('accessCode2');
-
   if (!accessCode) {
     return req.reject(403, 'Missing accessCode.');
   }
@@ -63,7 +59,6 @@ const validateAccess = async (req, srv) => {
 
 export default (srv) => {
   srv.before(['READ', 'UPDATE', 'DELETE'], 'Spacefarers', (req) => validateAccess(req, srv));
-  srv.before('CREATE', 'Spacefarers.drafts', (req) => validateAccess(req, srv));
 
   srv.before('CREATE', 'Spacefarers.drafts', (req) => {
     const { wormholeNavigationSkill, name, stardustCollection, originPlanet } = req.data;
